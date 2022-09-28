@@ -5,8 +5,11 @@ import db from "./config/db.js"
 //crear la app
 const app = express()
 
+app.use(express.urlencoded({extended: true}))
+
 try {
     await db.authenticate()
+    db.sync()
     console.log("conexion correcta a la base de datos")
 } catch (error) {
     console.log(error)
